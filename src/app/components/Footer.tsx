@@ -51,13 +51,13 @@ export default function Footer() {
         >
           <a href="mailto:your.email@example.com" className={styles.emailLink}>
             <span className={`${styles.emailText} ${emailHovered ? styles.hovered : ""}`}>
-              your.email@example.com
+              thakkarmeet2145@gmail.com
             </span>
           </a>
         </div>
         
         <div className={styles.copyright}>
-          <p>© {new Date().getFullYear()} YourName. All Rights Reserved.</p>
+          <p>© {new Date().getFullYear()} Meet Thakkar. All Rights Reserved.</p>
         </div>
       </div>
     </footer>
