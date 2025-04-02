@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import styles from './styles/home.module.css';
-
+import { useRouter } from "next/navigation";
 // Typing animation component
 const TypingAnimation = ({ titles  }: { titles: string[] }) => {
   const [displayText, setDisplayText] = useState('');
@@ -47,7 +47,7 @@ const TypingAnimation = ({ titles  }: { titles: string[] }) => {
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
   const titles = ['Full-Stack Developer', 'ML Enthusiast', 'Generative AI Developer'];
-  
+  const router = useRouter();
   useEffect(() => {
     setIsVisible(true);
   }, []);
@@ -70,13 +70,19 @@ export default function Home() {
           </p>
           
           <div className={styles.buttonContainer}>
-            <button className={`${styles.button} ${styles.primary}`}>
-              View Projects
-            </button>
-            <button className={`${styles.button} ${styles.secondary}`}>
-              Contact Me
-            </button>
-          </div>
+      <button
+        className={`${styles.button} ${styles.primary}`}
+        onClick={() => router.push("/projects")}
+      >
+        View Projects
+      </button>
+      <button
+        className={`${styles.button} ${styles.secondary}`}
+        onClick={() => router.push("/contact")}
+      >
+        Contact Me
+      </button>
+    </div>
         </div>
         
         <div className={styles.heroImage}>
@@ -269,9 +275,12 @@ export default function Home() {
           I'm always open to new opportunities and collaborations.
           Feel free to reach out if you'd like to work together!
         </p>
-        <button className={`${styles.button} ${styles.primary}`}>
-          Contact Me
-        </button>
+        <button
+        className={`${styles.button} ${styles.primary}`}
+        onClick={() => router.push("/contact")}
+      >
+        Contact Me
+      </button>
       </section>
     </main>
   );

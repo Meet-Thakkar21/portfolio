@@ -31,13 +31,13 @@ export default function Footer() {
           <div className={styles.footerSection}>
             <h3 className={styles.footerTitle}>Connect</h3>
             <div className={styles.socialLinks}>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
+              <a href="https://github.com/Meet-Thakkar21/" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
                 <span className={styles.githubIcon}>GitHub</span>
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
+              <a href="https://www.linkedin.com/in/meet-thakkar-13459324b/" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
                 <span className={styles.linkedinIcon}>LinkedIn</span>
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
+              <a href="https://x.com/thakkarmeet2104?t=Qfd24ZEWGjscBCUUXGotPw&s=08" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
                 <span className={styles.twitterIcon}>Twitter</span>
               </a>
             </div>
