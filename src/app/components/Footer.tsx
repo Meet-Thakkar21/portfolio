@@ -24,35 +24,34 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-gray-50 pt-16 pb-8">
+    <footer className="bg-[#191A21] pt-14 pb-8 border-t border-white/10">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-8 text-center md:text-left">
           <div>
-            <h3 className="text-xl font-semibold mb-4 text-gray-900 relative inline-block after:content-[''] after:block after:h-1 after:w-10 after:bg-gradient-to-r after:from-indigo-500 after:to-pink-400 after:rounded after:mt-2"></h3>
-            <h3 className="text-xl font-semibold mb-4 text-gray-900 relative inline-block after:content-[''] after:block after:h-1 after:w-10 after:bg-gradient-to-r after:from-indigo-500 after:to-pink-400 after:rounded after:mt-2">{name}</h3>
-            <p className="text-gray-600 mb-4">
+            <h3 className="text-xl font-semibold mb-4 text-white">{name}</h3>
+            <p className="text-gray-400 mb-4">
               Full-stack developer passionate about creating innovative solutions.
             </p>
           </div>
           <div>
-            <h3 className="text-xl font-semibold mb-4 text-gray-900 relative inline-block after:content-[''] after:block after:h-1 after:w-10 after:bg-gradient-to-r after:from-indigo-500 after:to-pink-400 after:rounded after:mt-2">Links</h3>
+            <h3 className="text-xl font-semibold mb-4 text-white">Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/" className="text-gray-600 hover:text-indigo-500 transition hover:translate-x-1 block">Home</Link>
+                <Link href="/" className="text-gray-400 hover:text-blue-400 transition block">Home</Link>
               </li>
               <li>
-                <Link href="/about" className="text-gray-600 hover:text-indigo-500 transition hover:translate-x-1 block">About</Link>
+                <Link href="/about" className="text-gray-400 hover:text-blue-400 transition block">About</Link>
               </li>
               <li>
-                <Link href="/projects" className="text-gray-600 hover:text-indigo-500 transition hover:translate-x-1 block">Projects</Link>
+                <Link href="/projects" className="text-gray-400 hover:text-blue-400 transition block">Projects</Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-600 hover:text-indigo-500 transition hover:translate-x-1 block">Contact</Link>
+                <Link href="/contact" className="text-gray-400 hover:text-blue-400 transition block">Contact</Link>
               </li>
             </ul>
           </div>
           <div>
-            <h3 className="text-xl font-semibold mb-4 text-gray-900 relative inline-block after:content-[''] after:block after:h-1 after:w-10 after:bg-gradient-to-r after:from-indigo-500 after:to-pink-400 after:rounded after:mt-2">Connect</h3>
+            <h3 className="text-xl font-semibold mb-4 text-white">Connect</h3>
             <div className="flex gap-4 justify-center md:justify-start">
               {socials.map((social) => (
                 <a
@@ -60,7 +59,7 @@ export default function Footer() {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-gray-100 flex justify-center items-center text-gray-700 hover:bg-gradient-to-r hover:from-indigo-500 hover:to-pink-400 hover:text-white transition"
+                  className="w-10 h-10 rounded-full bg-[#232334] flex justify-center items-center text-gray-200 hover:bg-blue-500 hover:text-white transition"
                   aria-label={social.name}
                 >
                   {getSocialIcon(social.name)}
@@ -69,17 +68,15 @@ export default function Footer() {
             </div>
           </div>
         </div>
-
         <div className="text-center mb-4">
           <a
             href={`mailto:${email}`}
-            className="inline-block bg-gray-100 px-6 py-2 rounded-full text-gray-900 font-medium transition relative hover:bg-gradient-to-r hover:from-indigo-500 hover:to-pink-400 hover:text-white"
+            className="inline-block bg-[#232334] px-6 py-2 rounded-full text-gray-100 font-medium transition hover:bg-blue-500 hover:text-white"
           >
             {email}
           </a>
         </div>
-
-        <div className="border-t border-gray-200 pt-6 text-center text-gray-500 text-sm">
+        <div className="border-t border-white/10 pt-6 text-center text-gray-500 text-sm">
           <p>© {new Date().getFullYear()} {name}. All Rights Reserved.</p>
         </div>
       </div>
