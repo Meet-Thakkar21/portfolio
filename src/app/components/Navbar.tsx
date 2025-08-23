@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import styles from "../styles/navbar.module.css";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -10,45 +9,91 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    // Cleanup function to remove the event listener
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/projects", label: "Projects" },
+    { href: "/contact", label: "Contact" },
+  ];
 
   return (
-    <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
-      <div className={styles.container}>
-        <div className={styles.logoContainer}>
-          <Link href="/" className={styles.logo}>
-            <span className={styles.logoText}>Meet Thakkar</span>
-            <span className={styles.logoEmoji}>👨‍💻</span>
-          </Link>
-        </div>
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 flex justify-center items-center transition-all duration-300 ${
+        scrolled
+          ? "h-[70px] bg-white/95 shadow-lg backdrop-blur-md"
+          : "h-[80px] bg-transparent"
+      }`}
+    >
+      <div className="w-[90%] max-w-7xl flex justify-between items-center">
+        {/* Logo */}
+        <Link href="/" className="flex items-center text-3xl font-bold text-gray-800 no-underline transition-transform duration-300 hover:-translate-y-0.5">
+          <span className="bg-gradient-to-r from-blue-500 to-pink-500 bg-clip-text text-transparent">
+            Meet Thakkar
+          </span>
+          <span className="ml-2 text-2xl origin-[70%_70%] animate-wave">
+            👨‍💻
+          </span>
+        </Link>
 
-        <div className={styles.menuButton} onClick={toggleMenu}>
-          <div className={`${styles.menuBar} ${menuOpen ? styles.open : ""}`}></div>
-          <div className={`${styles.menuBar} ${menuOpen ? styles.open : ""}`}></div>
-          <div className={`${styles.menuBar} ${menuOpen ? styles.open : ""}`}></div>
-        </div>
-
-        <ul className={`${styles.navLinks} ${menuOpen ? styles.open : ""}`}>
-          <li><Link href="/" className={styles.navLink}>Home</Link></li>
-          <li><Link href="/about" className={styles.navLink}>About</Link></li>
-          <li><Link href="/projects" className={styles.navLink}>Projects</Link></li>
-          <li><Link href="/contact" className={styles.navLink}>Contact</Link></li>
+        {/* Desktop Navigation Links */}
+        <ul
+          className={`
+            hidden md:flex md:items-center md:gap-8
+            transition-all duration-300 ease-in-out
+          `}
+        >
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <Link href={link.href} className="group text-gray-800 font-medium no-underline transition-colors duration-300 hover:text-blue-500">
+                {link.label}
+                {/* Underline effect */}
+                <span className="block h-0.5 max-w-0 bg-gradient-to-r from-blue-500 to-pink-500 transition-all duration-300 group-hover:max-w-full"></span>
+              </Link>
+            </li>
+          ))}
         </ul>
+
+        {/* Mobile Menu Button (Hamburger) */}
+        <div
+          className="md:hidden flex flex-col justify-between w-[30px] h-[21px] cursor-pointer z-50"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          <span className={`block w-full h-0.5 bg-gray-800 rounded-sm transition-all duration-300 ${menuOpen ? "transform translate-y-2.5 rotate-45" : ""}`}></span>
+          <span className={`block w-full h-0.5 bg-gray-800 rounded-sm transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`}></span>
+          <span className={`block w-full h-0.5 bg-gray-800 rounded-sm transition-all duration-300 ${menuOpen ? "transform -translate-y-2.5 -rotate-45" : ""}`}></span>
+        </div>
+
+        {/* Mobile Menu Links */}
+        <div
+          className={`
+            md:hidden fixed top-0 h-full w-[70%] bg-white shadow-xl
+            flex flex-col items-center justify-center gap-8
+            transition-all duration-300 ease-in-out
+            ${menuOpen ? "right-0" : "-right-full"}
+          `}
+        >
+          <ul className="flex flex-col items-center gap-8">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="text-2xl text-gray-800 font-medium"
+                  onClick={() => setMenuOpen(false)} // Close menu on click
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </nav>
   );

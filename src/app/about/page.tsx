@@ -1,240 +1,141 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import "../styles/about.css";
+import portfolioData from '../data.json'; // Import the data
 
 export default function Achievements() {
   const [activeCard, setActiveCard] = useState<number | null>(null);
   const [isVisible, setIsVisible] = useState(false);
+
+  // Get achievements data from the imported file
+  const { achievements } = portfolioData;
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
   return (
-    <main className={`achievements-container ${isVisible ? 'visible' : ''}`}>
-      <div className="section-header">
-        <h1>Achievements & Skills</h1>
-        <div className="header-underline"></div>
-        <p className="subtitle">Milestones from my coding journey</p>
+    <main className={`max-w-6xl mx-auto py-16 px-4 font-inter ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'} transition-all duration-800 ease-out`}>
+      <div className="text-center mb-16 relative">
+        <h1 className="text-4xl md:text-5xl font-extrabold mb-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent tracking-tight">
+          Achievements & Skills
+        </h1>
+        <div className="h-1 w-20 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 mx-auto my-4 rounded relative before:content-[''] before:absolute before:inset-0 before:bg-gradient-to-r before:from-indigo-500 before:via-purple-500 before:to-pink-500 before:blur-lg before:opacity-60" />
+        <p className="text-lg text-slate-500 font-normal max-w-xl mx-auto">Milestones from my coding journey</p>
       </div>
 
-      <div className="achievements-grid">
-        {/* Hackathon Card */}
-        <div 
-          className={`achievement-card ${activeCard === 0 ? 'active' : ''}`}
-          onMouseEnter={() => setActiveCard(0)}
-          onMouseLeave={() => setActiveCard(null)}
-        >
-          <div className="card-badge">Featured</div>
-          <div className="card-inner">
-            <div className="card-front">
-              <div className="card-icon trophy">
-                <img src="/icons/trophy.png" alt="Trophy" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 relative">
+        {achievements.map((item, index) => (
+          <div
+            key={index}
+            className={`group relative min-h-[320px] perspective-[1500px] z-0 transition-[z-index] duration-75 ${activeCard === index ? '!z-10' : 'z-0'} opacity-0 animate-fadeInUp`}
+            style={{ animationDelay: `${0.1 * (index + 1)}s`, animationFillMode: 'forwards' }}
+            onMouseEnter={() => setActiveCard(index)}
+            onMouseLeave={() => setActiveCard(null)}
+          >
+            {item.date && (
+              <div className="absolute top-4 right-4 bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-xs font-semibold px-3 py-1 rounded-full z-10 shadow-md">
+                Featured
               </div>
-              <div className="card-content">
-                <h3>Hackathon Runner-up</h3>
-                <p className="card-description">
-                  Secured 2nd place at DuHacks Hackathon 2024 with our solution "HandTalk"
-                </p>
-                <div className="card-footer">
-                  <span className="date">March 2024</span>
-                  <a href="https://github.com/Yashgabani845/GestureGenius" className="card-link">View Project <span className="arrow">→</span></a>
+            )}
+            <div
+              className={`relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] ${activeCard === index ? 'rotate-y-180' : ''}`}
+            >
+              {/* Front */}
+              <div className="absolute w-full h-full bg-white dark:bg-slate-800 rounded-2xl shadow-xl flex flex-col [backface-visibility:hidden] overflow-hidden">
+                <div className="flex items-center mt-7 mb-[-24px] ml-7 w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 justify-center">
+                  <img src={item.iconUrl} alt={`${item.title} Icon`} className="w-12 h-12 object-contain" />
+                </div>
+                <div className="flex flex-col flex-1 p-7 pt-4">
+                  <h3 className="text-xl font-bold mb-4 text-slate-800 dark:text-slate-50 relative">{item.title}</h3>
+                  {item.description && (
+                    <p className="text-slate-500 dark:text-slate-300 text-base mb-6 leading-relaxed">{item.description}</p>
+                  )}
+                  {item.stats && (
+                    <div className="grid grid-cols-3 gap-3 mb-6">
+                      {item.stats.map((stat, statIndex) => (
+                        <div key={statIndex} className="flex flex-col items-center text-center p-3 bg-indigo-500/5 rounded-lg transition hover:-translate-y-1 hover:bg-indigo-500/10">
+                          <span className="text-lg font-bold bg-gradient-to-br from-indigo-500 to-purple-500 bg-clip-text text-transparent">{stat.value}</span>
+                          <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">{stat.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  {item.date && (
+                    <div className="flex justify-between items-center mt-auto">
+                      <span className="text-xs text-slate-400 font-medium">{item.date}</span>
+                      <a
+                        href={item.link}
+                        className="text-indigo-500 hover:text-indigo-700 text-sm font-semibold flex items-center gap-1 transition"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View Project <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
+                      </a>
+                    </div>
+                  )}
+                  {item.stats && (
+                    <a
+                      href={item.link}
+                      className="block w-full mt-5 py-3 rounded-lg text-center font-semibold text-base bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-md relative overflow-hidden transition hover:-translate-y-1"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View Profile
+                    </a>
+                  )}
                 </div>
               </div>
-            </div>
-            <div className="card-back">
-              <h3>About HandTalk</h3>
-              <p>An AI-powered solution for sign language detection using mobilenet with videocall using webRTC and chat.</p>
-              <div className="tech-stack">
-                <span>React</span>
-                <span>TensorFlow</span>
-                <span>Node.js</span>
-              </div>
-              <a href="https://github.com/Yashgabani845/GestureGenius" className="view-details-btn">View Details</a>
-            </div>
-          </div>
-        </div>
-
-        {/* LeetCode Card */}
-        <div 
-          className={`achievement-card leetcode ${activeCard === 1 ? 'active' : ''}`}
-          onMouseEnter={() => setActiveCard(1)}
-          onMouseLeave={() => setActiveCard(null)}
-        >
-          <div className="card-inner">
-            <div className="card-front">
-              <div className="card-icon">
-              <img src="/icons/leetcode.png" alt="Trophy" />
-              </div>
-              <div className="card-content">
-                <h3>LeetCode</h3>
-                <div className="stats-grid">
-                  <div className="stat-item">
-                    <span className="stat-value">1520</span>
-                    <span className="stat-label">Rating</span>
+              {/* Back */}
+              <div className="absolute w-full h-full bg-gradient-to-br from-indigo-500 to-purple-500 text-white rounded-2xl p-8 flex flex-col [backface-visibility:hidden] rotate-y-180 overflow-hidden">
+                <h3 className="text-lg font-bold mb-4 relative after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-10 after:h-1 after:bg-white/50 after:rounded"></h3>
+                <h3 className="text-lg font-bold mb-2">{item.title}</h3>
+                <p className="mb-6 text-base">{item.backContent}</p>
+                {item.tech && (
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {item.tech.map((techItem, techIndex) => (
+                      <span key={techIndex} className="bg-white/20 px-3 py-1 rounded-2xl text-xs font-medium">{techItem}</span>
+                    ))}
                   </div>
-                  <div className="stat-item">
-                    <span className="stat-value">135+</span>
-                    <span className="stat-label">Problems</span>
-                  </div>
-                  <div className="stat-item">
-                    <span className="stat-value">8009</span>
-                    <span className="stat-label">Rank</span>
-                  </div>
-                </div>
-                <a href="https://leetcode.com/u/MeetThakkar/" className="profile-button">View Profile</a>
-              </div>
-            </div>
-            <div className="card-back">
-              <h3>My LeetCode Journey</h3>
-              <p>Consistently solving algorithmic problems to improve problem-solving skills.</p>
-             
-              <a href="https://leetcode.com/u/MeetThakkar/" className="view-details-btn">View Profile</a>
-            </div>
-          </div>
-        </div>
-
-        
-        {/* GitHub Card */}
-        <div 
-          className={`achievement-card github ${activeCard === 3 ? 'active' : ''}`}
-          onMouseEnter={() => setActiveCard(3)}
-          onMouseLeave={() => setActiveCard(null)}
-        >
-          <div className="card-inner">
-            <div className="card-front">
-              <div className="card-icon">
-              <img src="/icons/github.jpg" alt="Trophy" />
-              </div>
-              <div className="card-content">
-                <h3>GitHub</h3>
-                <div className="stats-grid">
-                  <div className="stat-item">
-                    <span className="stat-value">120+</span>
-                    <span className="stat-label">Contributions</span>
-                  </div>
-                  <div className="stat-item">
-                    <span className="stat-value">9+</span>
-                    <span className="stat-label">Repositories</span>
-                  </div>
-                  <div className="stat-item">
-                    <span className="stat-value">2</span>
-                    <span className="stat-label">Open Source</span>
-                  </div>
-                </div>
-                <a href="https://github.com/Meet-Thakkar21" className="profile-button">View Profile</a>
-              </div>
-            </div>
-            <div className="card-back">
-              <h3>Open Source Contributions</h3>
-              <p>Active contributor to open source projects and personal repositories.</p>
-              <div className="achievement-list">
-                <div className="achievement-item">
-                  <span className="achievement-dot"></span>
-                  <span>2 accepted pull requests to popular libraries</span>
-                </div>
-              </div>
-              <a href="https://github.com/Meet-Thakkar21" className="view-details-btn">View Profile</a>
-            </div>
-          </div>
-        </div>
-
-
-        {/* CodeChef Card */}
-        <div 
-          className={`achievement-card codechef ${activeCard === 2 ? 'active' : ''}`}
-          onMouseEnter={() => setActiveCard(2)}
-          onMouseLeave={() => setActiveCard(null)}
-        >
-          <div className="card-inner">
-            <div className="card-front">
-              <div className="card-icon">
-              <img src="/icons/codechef.jpg" alt="Trophy" />
-              </div>
-              <div className="card-content">
-                <h3>CodeChef</h3>
-                <div className="stats-grid">
-                  <div className="stat-item">
-                    <span className="stat-value">150+</span>
-                    <span className="stat-label">Problems Solved</span>
-                  </div>
-                  <div className="stat-item">
-                    <span className="stat-value">622</span>
-                    <span className="stat-label">Highest Rank</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="card-back">
-              <h3>CodeChef Competitions</h3>
-              <p>Participated in 10+ competitive programming contests.</p>
-              <div className="achievement-list">
-                <div className="achievement-item">
-                  <span className="achievement-dot"></span>
-                  <span>Global Rank 622 </span>
-                </div>
-                <div className="achievement-item">
-                  <span className="achievement-dot"></span>
-                  <span>Solved 150+ problems across categories</span>
-                </div>
+                )}
+                <a
+                  href={item.link}
+                  className="block mt-auto bg-white/20 py-2 rounded-md text-center font-semibold transition hover:bg-white/30"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Details
+                </a>
               </div>
             </div>
           </div>
-        </div>
-
-
-        <div
-          className={`achievement-card certificate ${activeCard === 4 ? "active" : ""}`}
-          onMouseEnter={() => setActiveCard(4)}
-          onMouseLeave={() => setActiveCard(null)}
-        >
-          <div className="card-inner">
-            <div className="card-front">
-              <div className="card-icon">
-              <img src="/icons/gfg.png" alt="Trophy" />
-              </div>
-              <div className="card-content">
-              <h3>GeeksForGeeks</h3>
-                <div className="stats-grid">
-                  <div className="stat-item">
-                    <span className="stat-value">70+</span>
-                    <span className="stat-label">Problems Solved</span>
-                  </div>
-                  <div className="stat-item">
-                    <span className="stat-value">244</span>
-                    <span className="stat-label">Rank</span>
-                  </div>
-                  <div className="stat-item">
-                    <span className="stat-value">225</span>
-                    <span className="stat-label">Score</span>
-                  </div>
-                  
-                </div>
-                <a href="https://www.geeksforgeeks.org/user/meetthake7e4/" className="profile-button">View Profile</a>
-              </div>
-              
-            </div>
-            <div className="card-back">
-            <h3>GFG Competitions</h3>
-              <p>Participated in 3 competitive programming contests.</p>
-              <div className="achievement-list">
-                <div className="achievement-item">
-                  <span className="achievement-dot"></span>
-                  <span>Rank 244 </span>
-                </div>
-                <div className="achievement-item">
-                  <span className="achievement-dot"></span>
-                  <span>Solved 70+ problems across categories</span>
-                </div>
-              </div>
-              <a href="https://www.geeksforgeeks.org/user/meetthake7e4/" className="view-details-btn">View Profile</a>
-            </div>
-            
-          </div>
-          
-        </div>
+        ))}
       </div>
+      {/* Animations for Card Flipping & Fade In */}
+      <style jsx global>{`
+        .rotate-y-180 {
+          transform: rotateY(180deg);
+        }
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fadeInUp {
+          animation: fadeInUp 0.6s ease-out forwards;
+        }
+        .perspective-[1500px] {
+          perspective: 1500px;
+        }
+        .font-inter {
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+      `}</style>
     </main>
   );
 }
