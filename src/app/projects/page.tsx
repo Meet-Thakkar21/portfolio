@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Github, ArrowRight } from "lucide-react";
+import { Github, ArrowRight, ExternalLink } from "lucide-react";
 import portfolioData from '../data.json';
 
 export default function Projects() {
@@ -45,7 +45,7 @@ export default function Projects() {
                     </span>
                   ))}
                 </div>
-                <div className="flex gap-4 mt-auto">
+                <div className="flex gap-4 mt-auto flex-wrap">
                   <a
                     href={project.github}
                     target="_blank"
@@ -55,6 +55,28 @@ export default function Projects() {
                     <Github size={18} />
                     <span>Code</span>
                   </a>
+                  {project.live && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 rounded-md bg-green-600 text-white font-medium transition hover:bg-green-700"
+                    >
+                      <ExternalLink size={18} />
+                      <span>Live</span>
+                    </a>
+                  )}
+                  {project.video && (
+                    <a
+                      href={project.video}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 rounded-md bg-red-600 text-white font-medium transition hover:bg-red-700"
+                    >
+                      <ExternalLink size={18} />
+                      <span>Video</span>
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

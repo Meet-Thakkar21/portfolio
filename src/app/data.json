@@ -26,6 +26,16 @@
       "period": "2019 - 2020"
     }
   ],
+  "experience": [
+    {
+      "company": "Summertown Software LLP",
+      "role": "Software Developer Intern - Remote",
+      "location": "Ahmedabad, Gujarat (Remote)",
+      "period": "21/05/2025 - 20/07/2025",
+      "letterUrl": "/internship_letter.pdf",
+      "description": "Worked as a Software Developer Intern, contributing to various software development projects. Responsibilities included designing and developing web applications, writing clean and efficient code, debugging and testing components, and collaborating on version control using Git. Utilized technologies such as JavaScript, Python, HTML/CSS, React, and Node.js. Demonstrated strong professionalism, problem-solving, and applied theoretical knowledge to real-world challenges in a remote work environment."
+    }
+  ],
   "techStack": [
     {
       "category": "Frontend",
@@ -124,8 +134,10 @@
       "title": "HandTalk",
       "description": "AI based project to detect sign language and translate it to text in a videocall. fine tuned mobilenet model.",
       "tags": ["Tensorflow", "React", "Node.js", "MediaPipe"],
-      "image": "/icons/handTalk.jpeg",
-      "github": "https://github.com/Yashgabani845/GestureGenius"
+      "image": "/icons/handTalk.png",
+      "github": "https://github.com/Yashgabani845/GestureGenius",
+      "live": "",
+      "video": "https://www.youtube.com/watch?v=RaSgkDoy-VQ"
     },
     {
       "id": 2,
@@ -133,7 +145,8 @@
       "description": "A project management tool that allows admins to create projects, assign them to different employees, and track their progress with chat and video meetings.",
       "tags": ["React", "WebRTC", "Node.js", "MongoDB"],
       "image": "/icons/Taskify.png",
-      "github": "https://github.com/Meet-Thakkar21/project_management"
+      "github": "https://github.com/Meet-Thakkar21/project_management",
+      "live": "https://taskify-one-khaki.vercel.app/"
     },
     {
       "id": 3,
@@ -141,7 +154,8 @@
       "description": "A platform where users can create, edit, and publish blog posts, as well as interact with other users through comments and likes.",
       "tags": ["Django", "Python", "HTML", "CSS", "JavaScript"],
       "image": "/icons/BlogNest.png",
-      "github": "https://github.com/Meet-Thakkar21/django_project"
+      "github": "https://github.com/Meet-Thakkar21/django_project",
+      "live": "https://meet.pythonanywhere.com/"
     },
     {
       "id": 4,
@@ -149,23 +163,26 @@
       "description": "An android application that allows users to read eBooks online and download them for offline reading.",
       "tags": ["Dart", "FireBase"],
       "image": "/icons/eBookReader.png",
-      "github": "https://github.com/Meet-Thakkar21/eBookReader"
+      "github": "https://github.com/Meet-Thakkar21/eBookReader",
+      "live": ""
     },
     {
       "id": 5,
-      "title": "Promptopia",
-      "description": "Promptopia is a Next.js-based web application where users can authenticate using their Google account, write and share creative prompts, view other users' prompts, and manage their own prompts in a profile section.",
-      "tags": ["Next.js", "MongoDb", "Node.js"],
-      "image": "/icons/Promptopia.png",
-      "github": "https://github.com/Meet-Thakkar21/promptopia"
+      "title": "CodeSentry",
+      "description": "Advanced coding assessment platform with AI-based proctoring, live monitoring, and multi-language support.",
+      "tags": ["React", "Spring Boot", "Flask", "MediaPipe", "Python", "Java", "Security", "AI"],
+      "image": "/icons/codeSentry.png",
+      "github": "https://github.com/Yashgabani845/CodeSentry",
+      "live": "https://code-sentry.vercel.app/"
     },
     {
       "id": 6,
       "title": "Portfolio",
       "description": "A portfolio website that showcases my skills and experience in web development.",
       "tags": ["Next.js", "CSS", "JavaScript"],
-      "image": "/icons/portfolio.webp",
-      "github": "https://github.com/Meet-Thakkar21/portfolio"
+      "image": "/icons/Portfolio.png",
+      "github": "https://github.com/Meet-Thakkar21/portfolio",
+      "live": ""
     }
   ],
   "contactInfo": {
