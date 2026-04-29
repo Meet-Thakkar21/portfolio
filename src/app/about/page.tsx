@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import portfolioData from "../data.json";
 import ScrollReveal from "../components/ScrollReveal";

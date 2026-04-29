@@ -23,7 +23,7 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Check localStorage first, then system preference
+    setMounted(true);
     const stored = localStorage.getItem("theme") as Theme | null;
     if (stored === "light" || stored === "dark") {
       setTheme(stored);
@@ -34,7 +34,6 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
       setTheme(initial);
       document.documentElement.classList.toggle("dark", prefersDark);
     }
-    setMounted(true);
   }, []);
 
   const toggleTheme = () => {
@@ -44,13 +43,10 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
     document.documentElement.classList.toggle("dark", next === "dark");
   };
 
-  // Prevent flash of wrong theme
-  if (!mounted) {
-    return <div style={{ visibility: "hidden" }}>{children}</div>;
-  }
-
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {/* We always render children to avoid blocking SSG, 
+          the layout script handles the flash prevention. */}
       {children}
     </ThemeContext.Provider>
   );
