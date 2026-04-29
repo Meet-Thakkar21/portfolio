@@ -2,10 +2,13 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -22,80 +25,252 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 flex justify-center items-center transition-all duration-300 ${
-        scrolled
-          ? "h-[60px] bg-[#191A21]/95 shadow-md backdrop-blur-lg border-b border-white/5"
-          : "h-[80px] bg-[#18181c]/95"
-      }`}
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        zIndex: 50,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: scrolled ? 60 : 76,
+        background: scrolled ? "var(--nav-bg-scrolled)" : "var(--nav-bg)",
+        backdropFilter: "blur(16px)",
+        WebkitBackdropFilter: "blur(16px)",
+        borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
+        transition: "all 0.3s ease",
+      }}
     >
-      <div className="w-[90%] max-w-7xl flex justify-between items-center">
+      <div
+        style={{
+          width: "90%",
+          maxWidth: 1200,
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center text-2xl md:text-3xl font-bold no-underline text-white"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            fontSize: "1.4rem",
+            fontWeight: 700,
+            textDecoration: "none",
+            color: "var(--text-primary)",
+            gap: 8,
+            letterSpacing: "-0.02em",
+          }}
         >
           Meet Thakkar
-          <span className="ml-2 text-xl md:text-2xl origin-[70%_70%] animate-wave">👨‍💻</span>
+          <span className="animate-wave" style={{ fontSize: "1.3rem" }}>
+            👨‍💻
+          </span>
         </Link>
-        {/* Desktop Navigation Links */}
-        <ul className="hidden md:flex md:items-center md:gap-10">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className="group text-gray-100 font-medium no-underline px-1 py-0.5 rounded transition-colors duration-200 hover:text-blue-400 hover:bg-[#232334]"
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-        {/* Mobile Menu Button */}
+
+        {/* Desktop Links + Toggle */}
         <div
-          className="md:hidden flex flex-col justify-between w-7 h-5 cursor-pointer z-50"
-          onClick={() => setMenuOpen(!menuOpen)}
+          style={{
+            alignItems: "center",
+            gap: 8,
+          }}
+          className="nav-desktop"
         >
-          <span className={`block w-full h-0.5 bg-gray-100 rounded-sm transition-all duration-300 ${menuOpen ? "transform translate-y-2 rotate-45" : ""}`}></span>
-          <span className={`block w-full h-0.5 bg-gray-100 rounded-sm transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`}></span>
-          <span className={`block w-full h-0.5 bg-gray-100 rounded-sm transition-all duration-300 ${menuOpen ? "transform -translate-y-2 -rotate-45" : ""}`}></span>
+          <ul
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 4,
+              listStyle: "none",
+              margin: 0,
+              padding: 0,
+            }}
+            className="nav-links-desktop"
+          >
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    style={{
+                      textDecoration: "none",
+                      padding: "8px 16px",
+                      borderRadius: 10,
+                      fontSize: "0.9rem",
+                      fontWeight: 500,
+                      color: isActive ? "var(--accent)" : "var(--text-secondary)",
+                      background: isActive ? "var(--accent-bg)" : "transparent",
+                      transition: "all 0.2s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isActive) {
+                        e.currentTarget.style.color = "var(--text-primary)";
+                        e.currentTarget.style.background = "var(--accent-bg)";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive) {
+                        e.currentTarget.style.color = "var(--text-secondary)";
+                        e.currentTarget.style.background = "transparent";
+                      }
+                    }}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+          <ThemeToggle />
         </div>
-        {/* Mobile Menu Links */}
+
+        {/* Mobile: Toggle + Hamburger */}
         <div
-          className={`
-            md:hidden fixed top-0 h-full w-[70%] bg-[#18181c] shadow-xl
-            flex flex-col items-center justify-center gap-8
-            transition-all duration-300
-            ${menuOpen ? "right-0" : "-right-full"}
-          `}
+          style={{ alignItems: "center", gap: 12 }}
+          className="nav-mobile"
         >
-          <ul className="flex flex-col items-center gap-8">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="text-2xl text-gray-100 font-medium"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+          <ThemeToggle />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              width: 26,
+              height: 18,
+              cursor: "pointer",
+              zIndex: 60,
+            }}
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <span
+              style={{
+                display: "block",
+                width: "100%",
+                height: 2,
+                background: "var(--text-primary)",
+                borderRadius: 2,
+                transition: "all 0.3s ease",
+                transform: menuOpen
+                  ? "translateY(8px) rotate(45deg)"
+                  : "none",
+              }}
+            />
+            <span
+              style={{
+                display: "block",
+                width: "100%",
+                height: 2,
+                background: "var(--text-primary)",
+                borderRadius: 2,
+                transition: "all 0.3s ease",
+                opacity: menuOpen ? 0 : 1,
+              }}
+            />
+            <span
+              style={{
+                display: "block",
+                width: "100%",
+                height: 2,
+                background: "var(--text-primary)",
+                borderRadius: 2,
+                transition: "all 0.3s ease",
+                transform: menuOpen
+                  ? "translateY(-8px) rotate(-45deg)"
+                  : "none",
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Mobile Menu Overlay */}
+        {menuOpen && (
+          <div
+            style={{
+              position: "fixed",
+              inset: 0,
+              background: "var(--overlay)",
+              zIndex: 49,
+            }}
+            onClick={() => setMenuOpen(false)}
+          />
+        )}
+
+        {/* Mobile Slide-in Menu */}
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            right: menuOpen ? 0 : "-100%",
+            height: "100vh",
+            width: "75%",
+            maxWidth: 320,
+            background: "var(--bg-secondary)",
+            borderLeft: "1px solid var(--border)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 24,
+            transition: "right 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
+            zIndex: 55,
+            boxShadow: menuOpen ? "-4px 0 24px rgba(0,0,0,0.1)" : "none",
+          }}
+        >
+          <ul
+            style={{
+              listStyle: "none",
+              padding: 0,
+              margin: 0,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 24,
+            }}
+          >
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    style={{
+                      textDecoration: "none",
+                      fontSize: "1.3rem",
+                      fontWeight: 600,
+                      color: isActive
+                        ? "var(--accent)"
+                        : "var(--text-primary)",
+                      transition: "color 0.2s ease",
+                    }}
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>
-      <style jsx global>{`
-        @keyframes wave {
-          0% { transform: rotate(0deg);}
-          15% { transform: rotate(-8deg);}
-          30% { transform: rotate(14deg);}
-          45% { transform: rotate(-4deg);}
-          60% { transform: rotate(8deg);}
-          75% { transform: rotate(-2deg);}
-          100% { transform: rotate(0deg);}
+
+      <style jsx>{`
+        .nav-desktop {
+          display: none !important;
         }
-        .animate-wave {
-          animation: wave 2.3s infinite;
-          display:inline-block;
+        .nav-mobile {
+          display: flex !important;
+        }
+        @media (min-width: 768px) {
+          .nav-desktop {
+            display: flex !important;
+          }
+          .nav-mobile {
+            display: none !important;
+          }
         }
       `}</style>
     </nav>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import portfolioData from "../data.json";
-import { Github, Linkedin, Twitter, Instagram } from "lucide-react";
+import { Github, Linkedin, Twitter, Instagram, Heart } from "lucide-react";
 
 export default function Footer() {
   const { name } = portfolioData;
@@ -11,56 +11,153 @@ export default function Footer() {
   const getSocialIcon = (socialName: string) => {
     switch (socialName) {
       case "GitHub":
-        return <Github size={20} />;
+        return <Github size={18} />;
       case "LinkedIn":
-        return <Linkedin size={20} />;
+        return <Linkedin size={18} />;
       case "Twitter":
-        return <Twitter size={20} />;
+        return <Twitter size={18} />;
       case "Instagram":
-        return <Instagram size={20} />;
+        return <Instagram size={18} />;
       default:
         return null;
     }
   };
 
   return (
-    <footer className="bg-[#191A21] pt-14 pb-8 border-t border-white/10">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-8 text-center md:text-left">
+    <footer
+      style={{
+        background: "var(--bg-secondary)",
+        borderTop: "1px solid var(--border)",
+        paddingTop: 48,
+        paddingBottom: 28,
+      }}
+    >
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px" }}>
+        {/* Gradient line accent */}
+        <div
+          style={{
+            width: 60,
+            height: 4,
+            background: "var(--gradient-accent)",
+            borderRadius: 2,
+            margin: "0 auto 40px auto",
+          }}
+        />
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+            gap: 40,
+            marginBottom: 36,
+          }}
+        >
+          {/* Brand */}
           <div>
-            <h3 className="text-xl font-semibold mb-4 text-white">{name}</h3>
-            <p className="text-gray-400 mb-4">
-              Full-stack developer passionate about creating innovative solutions.
+            <h3
+              style={{
+                fontSize: "1.15rem",
+                fontWeight: 700,
+                color: "var(--text-primary)",
+                marginBottom: 12,
+              }}
+            >
+              {name}
+            </h3>
+            <p
+              style={{
+                color: "var(--text-secondary)",
+                fontSize: "0.9rem",
+                lineHeight: 1.6,
+              }}
+            >
+              Full-stack developer passionate about creating innovative
+              solutions with web technologies and AI.
             </p>
           </div>
+
+          {/* Links */}
           <div>
-            <h3 className="text-xl font-semibold mb-4 text-white">Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/" className="text-gray-400 hover:text-blue-400 transition block">Home</Link>
-              </li>
-              <li>
-                <Link href="/about" className="text-gray-400 hover:text-blue-400 transition block">About</Link>
-              </li>
-              <li>
-                <Link href="/projects" className="text-gray-400 hover:text-blue-400 transition block">Projects</Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-gray-400 hover:text-blue-400 transition block">Contact</Link>
-              </li>
+            <h3
+              style={{
+                fontSize: "1.15rem",
+                fontWeight: 700,
+                color: "var(--text-primary)",
+                marginBottom: 12,
+              }}
+            >
+              Links
+            </h3>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+              {["Home", "About", "Projects", "Contact"].map((item) => (
+                <li key={item} style={{ marginBottom: 8 }}>
+                  <Link
+                    href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                    style={{
+                      color: "var(--text-secondary)",
+                      textDecoration: "none",
+                      fontSize: "0.9rem",
+                      transition: "color 0.2s ease",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.color = "var(--accent)")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.color = "var(--text-secondary)")
+                    }
+                  >
+                    {item}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
+
+          {/* Connect */}
           <div>
-            <h3 className="text-xl font-semibold mb-4 text-white">Connect</h3>
-            <div className="flex gap-4 justify-center md:justify-start">
+            <h3
+              style={{
+                fontSize: "1.15rem",
+                fontWeight: 700,
+                color: "var(--text-primary)",
+                marginBottom: 12,
+              }}
+            >
+              Connect
+            </h3>
+            <div style={{ display: "flex", gap: 10 }}>
               {socials.map((social) => (
                 <a
                   key={social.name}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-[#232334] flex justify-center items-center text-gray-200 hover:bg-blue-500 hover:text-white transition"
                   aria-label={social.name}
+                  style={{
+                    width: 38,
+                    height: 38,
+                    borderRadius: 10,
+                    background: "var(--bg-tertiary)",
+                    border: "1px solid var(--border)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "var(--text-secondary)",
+                    textDecoration: "none",
+                    transition: "all 0.2s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "var(--accent)";
+                    e.currentTarget.style.color = "#FFFFFF";
+                    e.currentTarget.style.borderColor = "var(--accent)";
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "var(--bg-tertiary)";
+                    e.currentTarget.style.color = "var(--text-secondary)";
+                    e.currentTarget.style.borderColor = "var(--border)";
+                    e.currentTarget.style.transform = "translateY(0)";
+                  }}
                 >
                   {getSocialIcon(social.name)}
                 </a>
@@ -68,16 +165,54 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="text-center mb-4">
+
+        {/* Email pill */}
+        <div style={{ textAlign: "center", marginBottom: 24 }}>
           <a
             href={`mailto:${email}`}
-            className="inline-block bg-[#232334] px-6 py-2 rounded-full text-gray-100 font-medium transition hover:bg-blue-500 hover:text-white"
+            style={{
+              display: "inline-block",
+              background: "var(--accent-bg)",
+              color: "var(--accent)",
+              padding: "8px 20px",
+              borderRadius: 999,
+              fontSize: "0.85rem",
+              fontWeight: 500,
+              textDecoration: "none",
+              transition: "all 0.2s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "var(--accent)";
+              e.currentTarget.style.color = "#FFFFFF";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "var(--accent-bg)";
+              e.currentTarget.style.color = "var(--accent)";
+            }}
           >
             {email}
           </a>
         </div>
-        <div className="border-t border-white/10 pt-6 text-center text-gray-500 text-sm">
-          <p>© {new Date().getFullYear()} {name}. All Rights Reserved.</p>
+
+        {/* Bottom */}
+        <div
+          style={{
+            borderTop: "1px solid var(--border)",
+            paddingTop: 20,
+            textAlign: "center",
+            color: "var(--text-tertiary)",
+            fontSize: "0.82rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 4,
+          }}
+        >
+          <span>© {new Date().getFullYear()} {name}. Built with</span>
+          <Heart
+            size={14}
+            style={{ color: "var(--accent)", fill: "var(--accent)" }}
+          />
         </div>
       </div>
     </footer>

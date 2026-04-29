@@ -2,97 +2,70 @@
 
 import Link from "next/link";
 import { Github, ArrowRight, ExternalLink } from "lucide-react";
-import portfolioData from '../data.json';
+import portfolioData from "../data.json";
+import ScrollReveal from "../components/ScrollReveal";
 
 export default function Projects() {
   const { projects } = portfolioData;
-
   return (
-    <main className="min-h-screen bg-[#18181c] text-gray-100 py-8 px-4 pt-25">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-3 text-white">
-            My Projects
-          </h1>
-          <p className="text-base text-gray-400 max-w-2xl mx-auto">
-            Explore my recent work and personal projects that showcase my skills and passion for development.
-          </p>
-        </div>
+    <main style={{ minHeight: "100vh", background: "var(--bg-primary)", color: "var(--text-primary)", paddingTop: 100, paddingBottom: 60 }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px" }}>
+        <ScrollReveal>
+          <div style={{ textAlign: "center", marginBottom: 48 }}>
+            <h1 style={{ fontSize: "clamp(2rem, 4vw, 2.8rem)", fontWeight: 800, letterSpacing: "-0.03em", marginBottom: 12 }}>
+              My <span className="gradient-text">Projects</span>
+            </h1>
+            <div className="section-underline" style={{ marginBottom: 16 }} />
+            <p style={{ color: "var(--text-secondary)", fontSize: "1rem", maxWidth: 560, margin: "0 auto" }}>
+              Explore my recent work and personal projects that showcase my skills and passion for development.
+            </p>
+          </div>
+        </ScrollReveal>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {projects.map((project) => (
-            <div
-              key={project.id}
-              className="rounded-2xl overflow-hidden bg-[#21222c] shadow-lg transition hover:-translate-y-2 hover:shadow-2xl flex flex-col"
-            >
-              <div className="w-full h-52 overflow-hidden">
-                <img
-                  src={project.image || "/placeholder.svg"}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition duration-500 hover:scale-105"
-                />
-              </div>
-              <div className="p-6 flex flex-col flex-grow">
-                <h2 className="text-xl font-semibold mb-2 text-white">{project.title}</h2>
-                <p className="text-gray-300 mb-4 flex-grow">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag, idx) => (
-                    <span
-                      key={idx}
-                      className="bg-blue-500/10 text-blue-400 px-3 py-1 rounded-2xl text-xs font-medium"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: 24, marginBottom: 64 }}>
+          {projects.map((project, idx) => (
+            <ScrollReveal key={project.id} delay={idx * 0.08} variant="fadeUp">
+              <div className="glass-card" style={{ overflow: "hidden", display: "flex", flexDirection: "column", height: "100%" }}>
+                <div style={{ width: "100%", height: 200, overflow: "hidden" }}>
+                  <img src={project.image || "/placeholder.svg"} alt={project.title} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease" }}
+                    onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.05)"; }}
+                    onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; }} />
                 </div>
-                <div className="flex gap-4 mt-auto flex-wrap">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 rounded-md bg-blue-600 text-white font-medium transition hover:bg-blue-700"
-                  >
-                    <Github size={18} />
-                    <span>Code</span>
-                  </a>
-                  {project.live && (
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 rounded-md bg-green-600 text-white font-medium transition hover:bg-green-700"
-                    >
-                      <ExternalLink size={18} />
-                      <span>Live</span>
+                <div style={{ padding: 24, display: "flex", flexDirection: "column", flex: 1 }}>
+                  <h2 style={{ fontSize: "1.15rem", fontWeight: 700, color: "var(--text-primary)", marginBottom: 8 }}>{project.title}</h2>
+                  <p style={{ fontSize: "0.9rem", color: "var(--text-secondary)", lineHeight: 1.6, marginBottom: 16, flex: 1 }}>{project.description}</p>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 16 }}>
+                    {project.tags.map((tag, i) => (
+                      <span key={i} style={{ background: "var(--tag-bg)", color: "var(--tag-text)", padding: "4px 12px", borderRadius: 999, fontSize: "0.75rem", fontWeight: 600 }}>{tag}</span>
+                    ))}
+                  </div>
+                  <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: "auto" }}>
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="btn-accent" style={{ textDecoration: "none", fontSize: "0.82rem", padding: "8px 18px", borderRadius: 10 }}>
+                      <Github size={16} /> Code
                     </a>
-                  )}
-                  {project.video && (
-                    <a
-                      href={project.video}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 rounded-md bg-red-600 text-white font-medium transition hover:bg-red-700"
-                    >
-                      <ExternalLink size={18} />
-                      <span>Video</span>
-                    </a>
-                  )}
+                    {project.live && (
+                      <a href={project.live} target="_blank" rel="noopener noreferrer" className="btn-outline" style={{ textDecoration: "none", fontSize: "0.82rem", padding: "6px 16px", borderRadius: 10 }}>
+                        <ExternalLink size={16} /> Live
+                      </a>
+                    )}
+                    {project.video && (
+                      <a href={project.video} target="_blank" rel="noopener noreferrer" className="btn-outline" style={{ textDecoration: "none", fontSize: "0.82rem", padding: "6px 16px", borderRadius: 10, borderColor: "#EF4444", color: "#EF4444" }}>
+                        <ExternalLink size={16} /> Video
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
 
-        <div className="mt-16 text-center bg-[#21222c] rounded-2xl py-12 px-8">
-          <h2 className="text-2xl font-semibold mb-4 text-white">Interested in working together?</h2>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition hover:-translate-y-1"
-          >
-            <span>Contact Me</span>
-            <ArrowRight size={18} />
-          </Link>
-        </div>
+        <ScrollReveal>
+          <div className="glass-card" style={{ padding: "48px 32px", textAlign: "center" }}>
+            <h2 style={{ fontSize: "1.6rem", fontWeight: 700, marginBottom: 16 }}>Interested in working together?</h2>
+            <Link href="/contact" className="btn-accent" style={{ textDecoration: "none" }}>Contact Me <ArrowRight size={18} /></Link>
+          </div>
+        </ScrollReveal>
       </div>
     </main>
   );
