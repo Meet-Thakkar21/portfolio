@@ -8,8 +8,6 @@ export async function POST(request: Request) {
   if (!name || !email || !message) {
     return NextResponse.json({ error: "All fields are required." }, { status: 400 });
   }
-  console.log(process.env.CONTACT_EMAIL);
-  console.log(process.env.CONTACT_EMAIL_PASS);
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -20,7 +18,8 @@ export async function POST(request: Request) {
 
   try {
     await transporter.sendMail({
-      from: `"${name}" <${email}>`,
+      from: process.env.CONTACT_EMAIL,
+      replyTo: email,
       to: process.env.CONTACT_EMAIL,
       subject: `New message from ${name} (${email})`,
       text: message,
