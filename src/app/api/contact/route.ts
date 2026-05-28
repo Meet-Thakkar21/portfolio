@@ -8,8 +8,15 @@ export async function POST(request: Request) {
   if (!name || !email || !message) {
     return NextResponse.json({ error: "All fields are required." }, { status: 400 });
   }
+  // Check if environment variables are set
+  if (!process.env.CONTACT_EMAIL || !process.env.CONTACT_EMAIL_PASS) {
+    return NextResponse.json({ error: "Server configuration error: Missing email credentials." }, { status: 500 });
+  }
+
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
     auth: {
       user: process.env.CONTACT_EMAIL,
       pass: process.env.CONTACT_EMAIL_PASS,
@@ -28,8 +35,11 @@ export async function POST(request: Request) {
              <p><strong>Message:</strong><br/>${message}</p>`,
     });
     return NextResponse.json({ success: true });
-  } catch (err) {
+  } catch (err: any) {
     console.error("Mail send error:", err);
-    return NextResponse.json({ error: "Failed to send email." }, { status: 500 });
+    return NextResponse.json({ 
+      error: "Failed to send email.", 
+      details: err.message || "Unknown error" 
+    }, { status: 500 });
   }
 }

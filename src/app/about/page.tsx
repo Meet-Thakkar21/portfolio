@@ -7,7 +7,7 @@ import ScrollReveal from "../components/ScrollReveal";
 
 export default function About() {
   const [activeCard, setActiveCard] = useState<number | null>(null);
-  const { achievements, experience } = portfolioData;
+  const { achievements } = portfolioData;
 
   return (
     <main
@@ -52,147 +52,6 @@ export default function About() {
             </p>
           </section>
         </ScrollReveal>
-
-        {/* Experience */}
-        <section style={{ marginBottom: 64 }}>
-          <ScrollReveal>
-            <div style={{ textAlign: "center", marginBottom: 40 }}>
-              <h2
-                style={{
-                  fontSize: "clamp(1.6rem, 3vw, 2.2rem)",
-                  fontWeight: 800,
-                  color: "var(--text-primary)",
-                  letterSpacing: "-0.02em",
-                }}
-              >
-                Experience
-              </h2>
-              <div className="section-underline" />
-              <p
-                style={{
-                  color: "var(--text-secondary)",
-                  fontSize: "1rem",
-                  marginTop: 12,
-                }}
-              >
-                Professional work experience and internships
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns:
-                experience.length === 1 ? "1fr" : "repeat(auto-fit, minmax(400px, 1fr))",
-              gap: 24,
-            }}
-          >
-            {experience.map((exp, idx) => (
-              <ScrollReveal key={idx} delay={idx * 0.15}>
-                <div
-                  style={{
-                    background: "var(--bg-secondary)",
-                    border: "1px solid var(--border)",
-                    borderLeft: "4px solid var(--accent)",
-                    borderRadius: 16,
-                    padding: 28,
-                    boxShadow: "var(--card-shadow)",
-                    maxWidth: experience.length === 1 ? 800 : "100%",
-                    margin: experience.length === 1 ? "0 auto" : undefined,
-                  }}
-                >
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      marginBottom: 12,
-                      flexWrap: "wrap",
-                      gap: 8,
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontSize: "1.15rem",
-                        fontWeight: 700,
-                        color: "var(--text-primary)",
-                      }}
-                    >
-                      {exp.role}
-                    </span>
-                    <span
-                      style={{
-                        background: "var(--gradient-accent)",
-                        color: "#FFFFFF",
-                        fontSize: "0.72rem",
-                        fontWeight: 600,
-                        padding: "4px 14px",
-                        borderRadius: 999,
-                      }}
-                    >
-                      Internship
-                    </span>
-                  </div>
-                  <div style={{ marginBottom: 12 }}>
-                    <span
-                      style={{
-                        display: "block",
-                        fontSize: "0.95rem",
-                        color: "var(--text-secondary)",
-                        fontWeight: 600,
-                      }}
-                    >
-                      {exp.company}
-                    </span>
-                    <span
-                      style={{
-                        display: "block",
-                        fontSize: "0.85rem",
-                        color: "var(--text-tertiary)",
-                      }}
-                    >
-                      {exp.location}
-                    </span>
-                    <span
-                      style={{
-                        display: "block",
-                        fontSize: "0.85rem",
-                        color: "var(--text-tertiary)",
-                        fontFamily: "monospace",
-                      }}
-                    >
-                      {exp.period}
-                    </span>
-                  </div>
-                  <p
-                    style={{
-                      fontSize: "0.92rem",
-                      color: "var(--text-secondary)",
-                      lineHeight: 1.65,
-                      marginBottom: 16,
-                    }}
-                  >
-                    {exp.description}
-                  </p>
-                  <a
-                    href={exp.letterUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-accent"
-                    style={{
-                      textDecoration: "none",
-                      fontSize: "0.85rem",
-                      padding: "10px 22px",
-                    }}
-                  >
-                    View Completion Letter
-                  </a>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </section>
 
         {/* Achievements */}
         <section>
@@ -265,7 +124,7 @@ export default function About() {
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",
-                        justifyContent: "center",
+                        justifyContent: "flex-start",
                         padding: "32px 24px",
                         textAlign: "center",
                         margin: 0,
@@ -376,6 +235,7 @@ export default function About() {
                           display: "flex",
                           alignItems: "center",
                           gap: 6,
+                          marginTop: "auto",
                         }}
                       >
                         Details <ArrowRight size={14} />
@@ -390,7 +250,7 @@ export default function About() {
                         width: "100%",
                         height: "100%",
                         background: "var(--gradient-accent)",
-                        borderRadius: 20,
+                        borderRadius: 16,
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",

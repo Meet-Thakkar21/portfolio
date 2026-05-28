@@ -5,10 +5,12 @@ import Footer from "./components/Footer";
 import ThemeProvider from "./components/ThemeProvider";
 
 export const metadata: Metadata = {
-  title: "Meet Thakkar | Full-Stack Developer & AI Enthusiast",
+  title: "Meet Thakkar",
   description:
     "Portfolio of Meet Thakkar — full-stack developer, ML enthusiast, and GenAI developer building innovative solutions.",
-  icons: { icon: "/favicon.ico" },
+  icons: {
+    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>",
+  },
 };
 
 export default function RootLayout({

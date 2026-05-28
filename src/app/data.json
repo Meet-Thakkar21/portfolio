@@ -1,8 +1,12 @@
 {
   "name": "Meet Thakkar",
-  "titles": ["Full-Stack Developer", "ML Enthusiast", "Generative AI Developer"],
+  "titles": [
+    "Full-Stack Developer",
+    "ML Enthusiast",
+    "Generative AI Developer"
+  ],
   "heroDescription": "Passionate developer exploring the intersection of web technologies, artificial intelligence, and machine learning. Building innovative solutions that make a difference.",
-  "profileImage": "/profile.jpg",
+  "profileImage": "/profile.jpeg",
   "journey": [
     {
       "icon": "🎓",
@@ -28,49 +32,135 @@
   ],
   "experience": [
     {
+      "company": "Inventyv Software Services",
+      "role": "Backend Developer Intern",
+      "location": "Ahmedabad, Gujarat",
+      "period": "Dec 2025 - May 2026",
+      "description": "Specialized in high-performance Rust backend systems, real-time media communication protocols, and system-level desktop automation for an Enterprise Interaction Platform. Completed intensive training in advanced Rust systems engineering, including Tokio async runtime, Axum web frameworks, WebSockets, and WebRTC protocols. Developed unified chat (with TiKV distributed persistence and MinIO media storage), multi-user video calling via LiveKit SFU, and a secure host Windows control agent to bypass browser sandboxes.",
+      "skills": [
+        "Rust",
+        "Axum",
+        "Tokio",
+        "WebSockets",
+        "WebRTC",
+        "TiKV",
+        "MinIO",
+        "LiveKit SFU",
+        "Windows API",
+        "Git/GitHub"
+      ],
+      "highlights": [
+        "Specialized in high-performance Rust systems engineering, including ownership, lifetimes, and multithreading concurrency under the Tokio runtime and Axum web frameworks.",
+        "Engineered robust WebSocket & WebRTC backend signaling servers to negotiate peer session SDP Offer/Answer and ICE Candidates dynamically.",
+        "Integrated distributed TiKV key-value databases for message history and MinIO S3-compatible storage for secure enterprise file transfers."
+      ]
+    },
+    {
       "company": "Summertown Software LLP",
-      "role": "Software Developer Intern - Remote",
+      "role": "Software Developer Intern",
       "location": "Ahmedabad, Gujarat (Remote)",
-      "period": "21/05/2025 - 20/07/2025",
+      "period": "May 2025 - Jul 2025",
       "letterUrl": "/internship_letter.pdf",
-      "description": "Worked as a Software Developer Intern, contributing to various software development projects. Responsibilities included designing and developing web applications, writing clean and efficient code, debugging and testing components, and collaborating on version control using Git. Utilized technologies such as JavaScript, Python, HTML/CSS, React, and Node.js. Demonstrated strong professionalism, problem-solving, and applied theoretical knowledge to real-world challenges in a remote work environment."
+      "description": "Worked as a Software Developer Intern, building and optimizing AI-driven shopping assistants, natural language processing models, real-time media tools, and marketing systems. Designed and developed backend modules and user interfaces for high-performance applications.",
+      "skills": [
+        "JavaScript",
+        "React",
+        "Node.js",
+        "Python",
+        "HTML/CSS",
+        "Git/GitHub"
+      ],
+      "highlights": [
+        "Built a RAG-based shopping chatbot integrating Amazon Bedrock (Anthropic Claude), Pinecone DB, and Next.js.",
+        "Restructured the backend and developed the frontend editor for a natural language to SQL (NL2SQL) module.",
+        "Developed both backend and frontend for a Virtual Try-On feature enabling real-time camera overlays.",
+        "Created and maintained landing pages with HubSpot forms and lead conversion tracking."
+      ]
     }
   ],
   "techStack": [
     {
       "category": "Frontend",
       "technologies": [
-        { "name": "React", "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" },
-        { "name": "Next.js", "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" },
-        { "name": "HTML5", "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" },
-        { "name": "CSS3", "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" },
-        { "name": "JavaScript", "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" }
+        {
+          "name": "React",
+          "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"
+        },
+        {
+          "name": "Next.js",
+          "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg"
+        },
+        {
+          "name": "HTML5",
+          "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"
+        },
+        {
+          "name": "CSS3",
+          "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg"
+        },
+        {
+          "name": "JavaScript",
+          "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"
+        }
       ]
     },
     {
       "category": "Backend",
       "technologies": [
-        { "name": "Node.js", "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" },
-        { "name": "Express", "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" },
-        { "name": "MongoDB", "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" },
-        { "name": "SQL", "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg" }
+        {
+          "name": "Node.js",
+          "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg"
+        },
+        {
+          "name": "Express",
+          "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg"
+        },
+        {
+          "name": "MongoDB",
+          "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg"
+        },
+        {
+          "name": "SQL",
+          "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azuresqldatabase/azuresqldatabase-original.svg"
+        }
       ]
     },
     {
       "category": "Tools",
       "technologies": [
-        { "name": "Git", "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" },
-        { "name": "Docker", "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" },
-        { "name": "AWS", "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" },
-        { "name": "Firebase", "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg" }
+        {
+          "name": "Git",
+          "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg"
+        },
+        {
+          "name": "Docker",
+          "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg"
+        },
+        {
+          "name": "AWS",
+          "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
+        },
+        {
+          "name": "Firebase",
+          "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg"
+        }
       ]
     },
     {
       "category": "AI/ML",
       "technologies": [
-        { "name": "TensorFlow", "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg" },
-        { "name": "PyTorch", "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg" },
-        { "name": "Python", "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" }
+        {
+          "name": "TensorFlow",
+          "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg"
+        },
+        {
+          "name": "PyTorch",
+          "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg"
+        },
+        {
+          "name": "Python",
+          "iconUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
+        }
       ]
     }
   ],
@@ -82,15 +172,28 @@
       "date": "March 2024",
       "link": "https://github.com/Yashgabani845/GestureGenius",
       "backContent": "HandTalk is an AI-powered solution for sign language detection using mobilenet with videocall using webRTC and chat.",
-      "tech": ["React", "TensorFlow", "Node.js"]
+      "tech": [
+        "React",
+        "TensorFlow",
+        "Node.js"
+      ]
     },
     {
       "iconUrl": "/icons/leetcode.png",
       "title": "LeetCode",
       "stats": [
-        { "value": "1520", "label": "Rating" },
-        { "value": "135+", "label": "Problems" },
-        { "value": "8009", "label": "Rank" }
+        {
+          "value": "1520",
+          "label": "Rating"
+        },
+        {
+          "value": "135+",
+          "label": "Problems"
+        },
+        {
+          "value": "8009",
+          "label": "Rank"
+        }
       ],
       "link": "https://leetcode.com/u/MeetThakkar/",
       "backContent": "Consistently solving algorithmic problems to improve problem-solving skills and data structure knowledge."
@@ -99,33 +202,21 @@
       "iconUrl": "/icons/github.jpg",
       "title": "GitHub",
       "stats": [
-        { "value": "120+", "label": "Contributions" },
-        { "value": "9+", "label": "Repositories" },
-        { "value": "2", "label": "Open Source" }
+        {
+          "value": "120+",
+          "label": "Contributions"
+        },
+        {
+          "value": "9+",
+          "label": "Repositories"
+        },
+        {
+          "value": "2",
+          "label": "Open Source"
+        }
       ],
       "link": "https://github.com/Meet-Thakkar21",
       "backContent": "Active contributor to open source projects, with 2 accepted pull requests to popular libraries."
-    },
-    {
-      "iconUrl": "/icons/codechef.jpg",
-      "title": "CodeChef",
-      "stats": [
-        { "value": "150+", "label": "Problems" },
-        { "value": "622", "label": "Highest Rank" }
-      ],
-      "link": "#",
-      "backContent": "Participated in 10+ competitive programming contests, achieving a global rank of 622."
-    },
-    {
-      "iconUrl": "/icons/gfg.png",
-      "title": "GeeksForGeeks",
-      "stats": [
-        { "value": "70+", "label": "Problems" },
-        { "value": "244", "label": "Rank" },
-        { "value": "225", "label": "Score" }
-      ],
-      "link": "https://www.geeksforgeeks.org/user/meetthake7e4/",
-      "backContent": "Participated in 3 competitive programming contests, with a top rank of 244."
     }
   ],
   "projects": [
@@ -133,7 +224,12 @@
       "id": 1,
       "title": "HandTalk",
       "description": "AI based project to detect sign language and translate it to text in a videocall. fine tuned mobilenet model.",
-      "tags": ["Tensorflow", "React", "Node.js", "MediaPipe"],
+      "tags": [
+        "Tensorflow",
+        "React",
+        "Node.js",
+        "MediaPipe"
+      ],
       "image": "/icons/handTalk.png",
       "github": "https://github.com/Yashgabani845/GestureGenius",
       "live": "",
@@ -143,7 +239,12 @@
       "id": 2,
       "title": "Taskify",
       "description": "A project management tool that allows admins to create projects, assign them to different employees, and track their progress with chat and video meetings.",
-      "tags": ["React", "WebRTC", "Node.js", "MongoDB"],
+      "tags": [
+        "React",
+        "WebRTC",
+        "Node.js",
+        "MongoDB"
+      ],
       "image": "/icons/Taskify.png",
       "github": "https://github.com/Meet-Thakkar21/project_management",
       "live": "https://taskify-one-khaki.vercel.app/"
@@ -152,7 +253,13 @@
       "id": 3,
       "title": "BlogNest",
       "description": "A platform where users can create, edit, and publish blog posts, as well as interact with other users through comments and likes.",
-      "tags": ["Django", "Python", "HTML", "CSS", "JavaScript"],
+      "tags": [
+        "Django",
+        "Python",
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
       "image": "/icons/BlogNest.png",
       "github": "https://github.com/Meet-Thakkar21/django_project",
       "live": "https://meet.pythonanywhere.com/"
@@ -161,7 +268,10 @@
       "id": 4,
       "title": "eBookReader",
       "description": "An android application that allows users to read eBooks online and download them for offline reading.",
-      "tags": ["Dart", "FireBase"],
+      "tags": [
+        "Dart",
+        "FireBase"
+      ],
       "image": "/icons/eBookReader.png",
       "github": "https://github.com/Meet-Thakkar21/eBookReader",
       "live": ""
@@ -170,7 +280,16 @@
       "id": 5,
       "title": "CodeSentry",
       "description": "Advanced coding assessment platform with AI-based proctoring, live monitoring, and multi-language support.",
-      "tags": ["React", "Spring Boot", "Flask", "MediaPipe", "Python", "Java", "Security", "AI"],
+      "tags": [
+        "React",
+        "Spring Boot",
+        "Flask",
+        "MediaPipe",
+        "Python",
+        "Java",
+        "Security",
+        "AI"
+      ],
       "image": "/icons/codeSentry.png",
       "github": "https://github.com/Yashgabani845/CodeSentry",
       "live": "https://code-sentry.vercel.app/"
@@ -179,7 +298,11 @@
       "id": 6,
       "title": "Portfolio",
       "description": "A portfolio website that showcases my skills and experience in web development.",
-      "tags": ["Next.js", "CSS", "JavaScript"],
+      "tags": [
+        "Next.js",
+        "CSS",
+        "JavaScript"
+      ],
       "image": "/icons/Portfolio.png",
       "github": "https://github.com/Meet-Thakkar21/portfolio",
       "live": ""
